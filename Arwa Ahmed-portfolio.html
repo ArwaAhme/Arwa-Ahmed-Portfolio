@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arwa Ahmed — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark-green: #1b5e72;
+    --mid-green: #20476a;
+    --orange: #73c1cf;
+    --yellow: #562d4c;
+    --cream: #f5f0e8;
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --text-dark: #1a1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    background: var(--dark-green);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo .star { color: var(--orange); font-size: 1.3rem; }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .btn-contact {
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-contact:hover { background: #2a506a; transform: scale(1.03); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark-green);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px 0 0 48px;
+  }
+
+  .hero-photo-wrap {
+    position: relative;
+    width: 320px;
+    height: 380px;
+    background: var(--orange);
+  }
+  .hero-photo-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+  }
+  .hero-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%);
+  }
+  /* Placeholder silhouette if no image */
+  .hero-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #265a91 0%, #234769 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-photo-placeholder svg { opacity: 0.6; }
+
+  .hero-caption {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    z-index: 2;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.62rem;
+    line-height: 1.5;
+    max-width: 190px;
+  }
+
+  .star-deco {
+    color: var(--orange);
+    font-size: 2rem;
+    position: absolute;
+  }
+  .star1 { top: 100px; left: 60px; }
+  .star2 { top: 160px; left: 20px; font-size: 1.2rem; }
+  .star3 { bottom: 10px; right: 30px; }
+
+  /* PORTFOLIO title stack */
+  .hero-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 48px;
+  }
+
+  .portfolio-stack {
+    position: relative;
+    line-height: 0.82;
+  }
+  .portfolio-stack .big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 9vw, 120px);
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    display: block;
+  }
+  .portfolio-stack .outline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(50px, 8vw, 105px);
+    -webkit-text-stroke: 1.5px var(--orange);
+    color: transparent;
+    letter-spacing: 0.02em;
+    display: block;
+    opacity: 0.7;
+  }
+  .portfolio-stack .outline2 {
+    font-size: clamp(40px, 6.5vw, 85px);
+    opacity: 0.45;
+  }
+  .portfolio-stack .outline3 {
+    font-size: clamp(30px, 5vw, 68px);
+    opacity: 0.25;
+  }
+
+  .hero-socials {
+    margin-top: 40px;
+    color: var(--cream);
+    font-size: 0.88rem;
+    line-height: 2;
+    opacity: 0.85;
+  }
+
+  /* Black bar */
+  .black-bar {
+    background: var(--black);
+    padding: 22px 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .scroll-btn {
+    background: var(--orange);
+    color: var(--white);
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    gap: 4px;
+    cursor: pointer;
+    animation: bounce 2s ease-in-out infinite;
+    border: none;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .scroll-btn svg { width: 18px; }
+
+  /* ── SECOND NAV (sticky) ── */
+  .nav2 {
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .nav2-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  .nav2-logo .star { color: var(--orange); }
+  .nav2-links { display: flex; align-items: center; gap: 30px; }
+  .nav2-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.88rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .nav2-links a:hover { opacity: 1; }
+
+  /* ── ABOUT SECTION ── */
+  .about-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 80vh;
+  }
+  .about-left {
+    padding: 80px 48px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hello-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--text-dark);
+    margin-bottom: 28px;
+  }
+  .about-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: #444;
+    max-width: 340px;
+    margin-bottom: 28px;
+  }
+  .linkedin-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--orange);
+    color: var(--white);
+    padding: 12px 22px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .linkedin-pill:hover { background: #1c5177; transform: scale(1.02); }
+  .linkedin-pill svg { width: 16px; }
+
+  .about-right {
+    position: relative;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 60px 0;
+  }
+  .about-photo-wrap {
+    position: relative;
+    width: 270px;
+    height: 340px;
+  }
+  .about-photo-bg {
+    position: absolute;
+    top: 16px; left: 16px;
+    width: 100%; height: 100%;
+    background: var(--dark-green);
+    border-radius: 2px;
+  }
+  .about-photo-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: linear-gradient(140deg, #c47a30 0%, #5a3510 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .tag-pill {
+    position: absolute;
+    background: var(--orange);
+    color: var(--white);
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .tag-dob { top: 40px; left: -60px; }
+  .tag-nat { bottom: 100px; right: -40px; }
+
+  .contact-card {
+    position: absolute;
+    bottom: 40px;
+    right: 24px;
+    background: var(--dark-green);
+    color: var(--cream);
+    padding: 20px 24px;
+    border-radius: 4px;
+    min-width: 220px;
+  }
+  .contact-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .contact-card p {
+    font-size: 0.78rem;
+    line-height: 2;
+    opacity: 0.85;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .resume-bg-text {
+    position: absolute;
+    bottom: 0; right: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 110px;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--dark-green);
+    opacity: 0.08;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ── BOTTOM SECTIONS ── */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Education */
+  .education-section {
+    padding: 60px 48px;
+    background: var(--cream);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--orange);
+  }
+  .timeline { list-style: none; }
+  .timeline-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 22px;
+    position: relative;
+    padding-left: 8px;
+  }
+  .timeline-item::before {
+    content: '◆';
+    color: var(--orange);
+    font-size: 0.7rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+  .tl-year {
+    font-weight: 700;
+    font-size: 0.88rem;
+    min-width: 90px;
+    color: var(--text-dark);
+  }
+  .tl-details h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+  .tl-details p {
+    font-size: 0.78rem;
+    color: #666;
+    margin-top: 2px;
+  }
+
+  /* Experience */
+  .experience-section {
+    background: var(--orange);
+    padding: 60px 48px;
+    color: var(--text-dark);
+  }
+  .experience-section .section-title { color: var(--text-dark); }
+  .exp-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 22px;
+    align-items: flex-start;
+  }
+  .exp-item::before {
+    content: '◆';
+    color: var(--dark-green);
+    font-size: 0.7rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+  .exp-year { font-weight: 700; font-size: 0.88rem; min-width: 50px; }
+  .exp-details h4 { font-weight: 700; font-size: 0.9rem; }
+  .exp-details p { font-size: 0.75rem; margin-top: 2px; opacity: 0.8; line-height: 1.5; }
+  .tags-row { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag-dark {
+    background: var(--dark-green);
+    color: var(--cream);
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  /* Skills */
+  .skills-section {
+    background: var(--cream);
+    padding: 60px 48px;
+  }
+  .skills-section .section-title { color: var(--orange); }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .skills-col h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 14px; }
+  .sw-icons { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .sw-icon {
+    background: var(--black);
+    color: var(--white);
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+  .code-list { font-size: 0.8rem; color: #444; line-height: 2.2; }
+  .skill-tags { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag-dark {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 0.78rem;
+  }
+
+  /* Activities */
+  .activities-section {
+    padding: 60px 48px;
+    background: var(--cream);
+  }
+  .activities-section .section-title { color: var(--text-dark); }
+
+  /* Language */
+  .language-section {
+    padding: 60px 48px;
+    background: var(--cream);
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .lang-grid { display: flex; gap: 40px; }
+  .lang-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .lang-item p { font-size: 0.8rem; color: #666; }
+
+  /* Hobbies */
+  .hobbies-section {
+    padding: 60px 48px;
+    background: var(--cream);
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .hobbies-grid { display: flex; gap: 30px; flex-wrap: wrap; }
+  .hobby-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+  .hobby-icon {
+    width: 56px; height: 56px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+  }
+  .hobby-item span { font-size: 0.72rem; color: #444; max-width: 70px; line-height: 1.4; }
+
+  /* Footer */
+  footer {
+    background: var(--dark-green);
+    color: var(--cream);
+    text-align: center;
+    padding: 30px;
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate { animation: fadeUp 0.7s ease forwards; }
+  .delay1 { animation-delay: 0.1s; opacity: 0; }
+  .delay2 { animation-delay: 0.3s; opacity: 0; }
+  .delay3 { animation-delay: 0.5s; opacity: 0; }
+  .delay4 { animation-delay: 0.7s; opacity: 0; }
+</style>
+</head>
+<body>
+
+<!-- NAV 1 -->
+<nav>
+  <div class="nav-logo">
+    <span class="star">✦</span> Arwa Ahmed
+  </div>
+  <div class="nav-links">
+    <a href="#about">About me</a>
+    <a href="#resume">Skills</a>
+    <a href="#work">Experience</a>
+    <button class="btn-contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch!</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Left: photo -->
+  <div class="hero-left">
+    <span class="star-deco star1">✦</span>
+    <span class="star-deco star2" >✦</span>
+    <div class="hero-photo-wrap">
+      <img src="Made in Hexels.gif">
+      
+      
+    </div>
+  </div>
+
+  <!-- Right: PORTFOLIO stack -->
+  <div class="hero-right">
+    <div class="portfolio-stack animate delay1">
+      <span class="big">PORTFOLIO</span>
+      <span class="outline">PORTFOL</span>
+      <span class="outline outline2">PORTF</span>
+      <span class="outline outline3">POR</span>
+    </div>
+    
+    <span class="star-deco star3" style="color:var(--yellow); position:relative; right:auto; bottom:auto; margin-top:24px;">✦</span>
+  </div>
+</section>
+
+<!-- BLACK BAR + SCROLL -->
+
+
+<!-- NAV 2 -->
+<nav class="nav2" id="about">
+  <div class="nav2-logo">
+    <span class="star">✦</span> Arwa Ahmed
+  </div>
+  <div class="nav2-links">
+    <a href="#about">About me</a>
+    <a href="#resume">Personal Projects</a>
+    <button class="btn-contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch!</button>
+  </div>
+</nav>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="about-left">
+    <h1 class="hello-title">Hello,<br>I'm Arwa !</h1>
+    <p class="about-text">
+      Graphic Designer specializing in logos, visual graphics, professional presentations designs.
+
+Skilled in Microsoft Office and Modern design tools to create clean and impactful visuals.
+
+Currently expanding my expertise in UI/UX design to build intuitive and user-friendly digital experiences.
+    </p>
+    <a href="https://linkedin.com/in/arwa-ahmed1012" class="linkedin-pill" target="_blank">
+      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5A2.49 2.49 0 012.5 6a2.49 2.49 0 01-2.49-2.5A2.49 2.49 0 012.5 1a2.49 2.49 0 012.48 2.5zM.1 8.5H5v15H.1v-15zm7.8 0H12v2.05c.64-1.2 2.2-2.45 4.5-2.45C20.68 8.1 21 11.2 21 14v9.5h-4.9V15c0-1.85-.05-4.2-2.55-4.2s-2.95 1.95-2.95 3.95V23.5H7.9V8.5z"/></svg>
+      linkedin.com/in/arwa-ahmed1012
+    </a><br>
+    <a href="https://www.freelancer.com/u/arwaa1012" class="linkedin-pill" target="_blank">
+      <svg fill="#f7f8f8" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" stroke="#f7f8f8"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Freelancer icon</title><path d="M14.096 3.076l1.634 2.292L24 3.076M5.503 20.924l4.474-4.374-2.692-2.89m6.133-10.584L11.027 5.23l4.022.15M4.124 3.077l.857 1.76 4.734.294m-3.058 7.072l3.497-6.522L0 5.13m7.064 7.485l3.303 3.548 3.643-3.57 1.13-6.652-4.439-.228Z"></path></g></svg>
+      freelancer.com/u/arwaa1012
+    </a>
+  </div>
+
+  <div class="about-right">
+    <div class="about-photo-wrap">
+      <div class="about-photo-bg"></div>
+      <div class="about-photo-img">
+        <img src="WhatsApp Image 2026-03-14 at 7.23.20 PM.jpeg" width="280px">
+      </div>
+      <div class="tag-pill tag-dob">10th December 2004</div>
+      <div class="tag-pill tag-nat">Egyptian</div>
+    </div>
+
+    <div id="contact" class="contact-card">
+      <h3>Contact</h3>
+      <p>📍 Ash Sharqia, Egypt</p>
+      <p>✉ arwamorsi432@gmail.com</p>
+    </div>
+
+    <div class="resume-bg-text">RESUME<br>RESUME<br>RESUME</div>
+  </div>
+</section>
+
+<!-- BOTTOM GRID -->
+<div class="bottom-grid" id="resume">
+
+  <!-- Education -->
+  <div class="education-section">
+    <h2 class="section-title">Education</h2>
+    <ul class="timeline">
+      <li class="timeline-item">
+        <span class="tl-year">2022–Present</span>
+        <div class="tl-details">
+          <h4>Veterinary Medicine, AlArish University</h4>
+          <p></p>
+        </div>
+      </li>
+        <span class="tl-year"></span>
+        <div class="tl-details">
+          <h4></h4>
+          <p></p>
+        </div>
+        <span class="tl-year"></span>
+        <div class="tl-details">
+          <h4></h4>
+          <p></p>
+        </div>
+    </ul>
+  </div>
+
+  <!-- Technical Skills -->
+  <div class="skills-section">
+    <h2 class="section-title">Technical skills</h2>
+    <div class="skills-grid">
+      <div class="skills-col">
+        <h4>Software Skills</h4>
+        <div class="sw-icons">
+          <div class="sw-icon" style="background:#001E36;">Ps</div>
+          <div class="sw-icon" style="background:#FF9A00;">Ai</div>
+          <div class="sw-icon" style="background:#FF61F6;">Xd</div>
+          <div class="sw-icon" style="background:#0f0408;">Figma</div>
+          <div class="sw-icon" style="background:#8d12cb;">M365</div>
+        </div>
+      </div>
+      <div class="skills-col">
+        <h4></h4>
+        <p style="font-size:0.78rem;color:#666;margin-bottom:8px;"></p>
+        <div class="code-list">
+           &nbsp; <br>
+           &nbsp;&nbsp;&nbsp; <br>
+          
+        </div>
+      </div>
+    </div>
+    <div class="skill-tags">
+      <span class="skill-tag-dark">Microsoft Office</span>
+      <span class="skill-tag-dark">Canva</span>
+      <span class="skill-tag-dark">UI/UX</span>
+    </div>
+  </div>
+
+  <!-- Experience -->
+  <div class="experience-section">
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-item">
+      <span class="exp-year">2025-Present</span>
+      <div class="exp-details">
+        <h4>DEPI Internship in Digital Arts</h4>
+        <p>UI/UX</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <span class="exp-year">2022</span>
+      <div class="exp-details">
+        <h4>Freelancer</h4>
+        <p>Consulted with clients, created logos, posters,<br>presentations based on their requirements</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <span class="exp-year">2022</span>
+      <div class="exp-details">
+        <h4>Graphic Designer</h4>
+        <p>Designed promotional materials for events</p>
+      </div>
+    </div>
+    <div class="tags-row">
+      <span class="tag-dark">#Creativity</span>
+      <span class="tag-dark">#Communication</span>
+      <span class="tag-dark">#Detail-oriented</span>
+      <span class="tag-dark">#Adaptability</span>
+    </div>
+  </div>
+
+  <!-- Language + Hobbies stacked -->
+  <div>
+    <div class="language-section">
+      <h2 class="section-title" style="color:var(--text-dark); font-size:1.7rem;">Language</h2>
+      <div class="lang-grid">
+        <div class="lang-item">
+          <h4>Arabic</h4>
+          <p>Native</p>
+        </div>
+        <div class="lang-item">
+          <h4>English</h4>
+          <p>Fluent</p>
+        </div>
+        <div class="lang-item">
+          <h4>France</h4>
+          <p>Intermediate</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hobbies-section">
+      <h2 class="section-title" style="color:var(--text-dark); font-size:1.7rem;">Hobbies &amp; Interests</h2>
+      <div class="hobbies-grid">
+        <div class="hobby-item">
+          <div class="hobby-icon">🎵</div>
+          <span>Pop,Jazz & R&B</span>
+        </div>
+        <div class="hobby-item">
+          <div class="hobby-icon">🎨</div>
+          <span>Digital art Miniature craft & Painting</span>
+        </div>
+        <div class="hobby-item">
+          <div class="hobby-icon"><svg width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="rgb(2, 15, 24)" d="M480 576L192 576C139 576 96 533 96 480L96 160C96 107 139 64 192 64L496 64C522.5 64 544 85.5 544 112L544 400C544 420.9 530.6 438.7 512 445.3L512 512C529.7 512 544 526.3 544 544C544 561.7 529.7 576 512 576L480 576zM192 448C174.3 448 160 462.3 160 480C160 497.7 174.3 512 192 512L448 512L448 448L192 448zM224 216C224 229.3 234.7 240 248 240L424 240C437.3 240 448 229.3 448 216C448 202.7 437.3 192 424 192L248 192C234.7 192 224 202.7 224 216zM248 288C234.7 288 224 298.7 224 312C224 325.3 234.7 336 248 336L424 336C437.3 336 448 325.3 448 312C448 298.7 437.3 288 424 288L248 288z"/></svg></div>
+          <span>Reading</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Activities -->
+<div class="activities-section" style="border-top:1px solid rgba(0,0,0,0.06);">
+  <h2 class="section-title" style="color:var(--text-dark);">Activities & Volunteering</h2>
+  <ul class="timeline">
+     <li class="timeline-item">
+      <span class="tl-year">2025-Present</span>
+      <div class="tl-details">
+        <h4>FA Model ARU</h4>
+        <p>Volunteer logistic and designer</p>
+      </div>
+    </li>
+    <li class="timeline-item">
+      <span class="tl-year">2022-2025</span>
+      <div class="tl-details">
+        <h4>Students` Conferences and Forums at AlArish University </h4>
+        <p>Graphic Designer "presentations, poster, invitations and logos"</p>
+      </div>
+    </li>
+   
+  </ul>
+</div>
+
+<footer>
+  © 2026 Arwa Ahmed — "Crafting experiences, not just visuals" ✦
+</footer>
+
+</body>
+</html>
